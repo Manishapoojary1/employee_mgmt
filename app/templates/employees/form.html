@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit' if form.first_name.data else 'Add' }} Employee{% endblock %}
+
+{% block content %}
+<style>
+    .form-container {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        max-width: 500px;
+        margin: 40px auto;
+        box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+    }
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    .form-container p {
+        margin-bottom: 15px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background: #4CAF50;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+    }
+    input[type="submit"]:hover {
+        background: #45a049;
+    }
+</style>
+
+<div class="form-container">
+    <h2>{{ 'Edit' if form.first_name.data else 'Add' }} Employee</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <p>{{ form.first_name.label }}<br>{{ form.first_name(size=32) }}</p>
+        <p>{{ form.last_name.label }}<br>{{ form.last_name(size=32) }}</p>
+        <p>{{ form.email.label }}<br>{{ form.email(size=32) }}</p>
+        <p>{{ form.phone.label }}<br>{{ form.phone(size=32) }}</p>
+        <p>{{ form.department.label }}<br>{{ form.department(size=32) }}</p>
+        <p>{{ form.position.label }}<br>{{ form.position(size=32) }}</p>
+        <p>{{ form.salary.label }}<br>{{ form.salary() }}</p>
+        <p>{{ form.date_joined.label }}<br>{{ form.date_joined() }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</div>
+{% endblock %}

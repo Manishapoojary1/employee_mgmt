@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Employees{% endblock %}
+{% block content %}
+<h2>Employees</h2>
+
+<a href="{{ url_for('main.employee_create') }}">+ Add Employee</a>
+
+<table border="1" cellpadding="10" cellspacing="0" style="width:100%; margin-top:15px;">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Actions</th>
+    </tr>
+    {% for emp in employees %}
+    <tr>
+        <td>{{ emp.first_name }} {{ emp.last_name }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.department }}</td>
+        <td>
+            <a href="{{ url_for('main.employee_detail', id=emp.id) }}">View</a> |
+            <a href="{{ url_for('main.employee_edit', id=emp.id) }}">Edit</a> |
+            <form method="POST" action="{{ url_for('main.employee_delete', id=emp.id) }}" style="display:inline;">
+                <button type="submit" onclick="return confirm('Delete this employee?')">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

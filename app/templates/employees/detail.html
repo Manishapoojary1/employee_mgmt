@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}{{ emp.first_name }} {{ emp.last_name }}{% endblock %}
+{% block content %}
+<style>
+    .employee-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        max-width: 500px;
+        margin: 40px auto;
+        box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    .employee-card img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border: 3px solid #ddd;
+    }
+    .employee-card h1 {
+        margin-bottom: 20px;
+    }
+    .employee-details {
+        text-align: left;
+        margin-top: 20px;
+    }
+    .employee-details p {
+        margin: 5px 0;
+        font-size: 16px;
+    }
+    .employee-details strong {
+        color: #333;
+    }
+    .back-link {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+    }
+</style>
+
+<div class="employee-card">
+    {% if emp.profile_pic %}
+        <img src="{{ url_for('static', filename='uploads/' ~ emp.profile_pic) }}" alt="Profile Picture">
+    {% else %}
+        <img src="{{ url_for('static', filename='default-profile.png') }}" alt="Default Profile Picture">
+    {% endif %}
+
+    <h1>{{ emp.first_name }} {{ emp.last_name }}</h1>
+
+    <div class="employee-details">
+        <p><strong>Email:</strong> {{ emp.email }}</p>
+        <p><strong>Phone:</strong> {{ emp.phone }}</p>
+        <p><strong>Department:</strong> {{ emp.department }}</p>
+        <p><strong>Position:</strong> {{ emp.position }}</p>
+        <p><strong>Salary:</strong> {{ emp.salary }}</p>
+        <p><strong>Date Joined:</strong> {{ emp.date_joined }}</p>
+    </div>
+
+    <a href="{{ url_for('main.employee_list') }}" class="back-link">Back to list</a>
+</div>
+{% endblock %}
