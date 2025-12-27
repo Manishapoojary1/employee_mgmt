@@ -28,3 +28,20 @@ This project is developed as part of an academic requirement and demonstrates ba
 ---
 
 ## 📂 Project Structure
+employee_mgmt/
+│
+├── app/
+│   ├── __init__.py
+│   ├── models.py
+│   ├── routes.py
+│   └── templates/
+│       ├── base.html
+│       ├── index.html
+│       └── employee.html
+│
+├── migrations/
+│
+├── run.py
+├── requirements.txt
+└── README.md
+
